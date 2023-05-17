@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.home.user.model.dao.UserDao">
+
+    <resultMap type="UserDto" id="user">
+        <result column="id" property="id"/>
+        <result column="pwd" property="pwd"/>
+        <result column="name" property="name"/>
+        <result column="address" property="address"/>
+        <result column="phone" property="phone"/>
+    </resultMap>
+
+    <select id="userLogin" parameterType="UserDto" resultType="UserDto">
+        select * from users where id = #{id} and pwd = #{pwd}
+    </select>
+
+    <insert id="userEnroll" parameterType="UserDto">
+        insert into users (id, pwd, name, address, phone) values (#{id}, #{pwd}, #{name}, #{address}, #{phone})
+    </insert>
+
+    <update id="userModify" parameterType="UserDto">
+        update users set id = #{id}, pwd = #{pwd}, name = #{name}, address = #{address}, phone = #{phone} where id = #{id}
+    </update>
+
+    <delete id="userDelete" parameterType="String">
+        delete from users where id = #{id}
+    </delete>
+</mapper>

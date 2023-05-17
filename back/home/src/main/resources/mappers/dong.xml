@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ssafy.home.dong.model.dao.DongDao">
+
+    <resultMap type="DongDto" id="dong">
+        <result column="dongName" property="dongName"/>
+        <result column="sidoName" property="sidoName"/>
+        <result column="gugunName" property="gugunName"/>
+    </resultMap>
+
+    <select id="getSido" parameterType="string" resultType="string">
+        select distinct sidoName
+        from dongcode
+        where sidoName is not null
+    </select>
+
+    <select id="getGugun" parameterType="string" resultType="string">
+        select distinct gugunName
+        from dongcode
+        where sidoName = #{sidoName}
+          and gugunName is not null
+    </select>
+
+    <select id="getDong" parameterType="map" resultType="string">
+        select distinct dongName
+        from dongcode
+        where gugunName = #{gugunName}
+          and dongName is not null
+    </select>
+</mapper>

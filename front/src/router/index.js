@@ -37,11 +37,11 @@ const routes = [
       },
     ],
   },
-  {
-    path: '/news',
-    name: 'news',
-    component: () => import(/* webpackChunkName: "news" */ '@/views/AppNews'),
-  },
+  // {
+  //   path: '/news',
+  //   name: 'news',
+  //   component: () => import(/* webpackChunkName: "news" */ '@/views/AppNews'),
+  // },
 ];
 
 const router = new VueRouter({

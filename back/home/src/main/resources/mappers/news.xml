@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="home.news.model.dao.NewsDao">
+    <!-- 등록 -->
+    <select id="countDate" resultType="int">
+        SELECT DATEDIFF(CURRENT_DATE() - 1, IFNULL(max(date), '2023-05-01')) AS days_difference
+        FROM news;
+    </select>
+
+    <!-- 등록 -->
+    <insert id="saveNewsArticle" parameterType="newsDto">
+        INSERT INTO news (title, content, img_url, article_url, company, date)
+        VALUES (#{title}, #{content}, #{img_url}, #{article_url}, #{company}, #{date})
+    </insert>
+
+    <!-- 검색: 신문사(company), 제목(title), 내용(content), 제목+내용(title_content) -->
+    <select id="listNewsArticle" parameterType="newsParameterDto" resultType="newsDto">
+        SELECT article_no, title, content, img_url, article_url, company, date
+        FROM news
+        <if test="word != null and word != ''">
+            <if test="type == 'company'">
+                WHERE company LIKE concat('%', #{word}, '%')
+            </if>
+            <if test="type == 'title'">
+                WHERE title LIKE concat('%', #{word}, '%')
+            </if>
+            <if test="type == 'content'">
+                WHERE user_id LIKE concat('%', #{word}, '%')
+            </if>
+            <if test="type == 'title_content'">
+                WHERE title_content LIKE concat('%', #{word}, '%')
+            </if>
+            <if test="type != 'company' and type != 'title' and type != 'content' and type != 'title_content'">
+                WHERE article_no = 0
+            </if>
+        </if>
+        ORDER BY article_no DESC
+        LIMIT #{pg}, 10
+    </select>
+</mapper>

@@ -37,11 +37,19 @@ const routes = [
       },
     ],
   },
-  // {
-  //   path: '/news',
-  //   name: 'news',
-  //   component: () => import(/* webpackChunkName: "news" */ '@/views/AppNews'),
-  // },
+  {
+    path: '/news',
+    name: 'news',
+    component: () => import(/* webpackChunkName: "news" */ '@/views/AppNews'),
+    redirect: '/news/list',
+    children: [
+      {
+        path: 'list',
+        name: 'newslist',
+        component: () => import(/* webpackChunkName: "board" */ '@/components/news/NewsList'),
+      },
+    ],
+  },
   {
     path: '/register',
     name: 'register',

@@ -1,30 +1,40 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.ssafy.home.user.model.dao.UserDao">
+<mapper namespace="home.user.model.dao.UserMapper">
+	<resultMap type="home.user.model.UserDTO" id="dto">
+		<result column="user_id" property="id"/>
+		<result column="pwd" property="password"/>
+		<result column="name" property="name"/>
+		<result column="email" property="email"/>
+		<result column="join_date" property="joinDate"/>
+	</resultMap>
 
-    <resultMap type="UserDto" id="user">
-        <result column="id" property="id"/>
-        <result column="pwd" property="pwd"/>
-        <result column="name" property="name"/>
-        <result column="address" property="address"/>
-        <result column="phone" property="phone"/>
-    </resultMap>
-
-    <select id="userLogin" parameterType="UserDto" resultType="UserDto">
-        select * from users where id = #{id} and pwd = #{pwd}
-    </select>
-
-    <insert id="userEnroll" parameterType="UserDto">
-        insert into users (id, pwd, name, address, phone) values (#{id}, #{pwd}, #{name}, #{address}, #{phone})
-    </insert>
-
-    <update id="userModify" parameterType="UserDto">
-        update users set id = #{id}, pwd = #{pwd}, name = #{name}, address = #{address}, phone = #{phone} where id = #{id}
-    </update>
-
-    <delete id="userDelete" parameterType="String">
-        delete from users where id = #{id}
-    </delete>
+	<select id="read" parameterType="home.user.model.UserDTO" resultMap="dto">
+		select * from users where user_id = #{id} and pwd = #{password}
+	</select>
+	
+	<select id="readById" parameterType="String" resultMap="dto">
+		select * from users where user_id = #{id}
+	</select>
+	
+	<select id="readAll" resultMap="dto">
+		select * from users
+	</select>
+	
+	<insert id="create" parameterType="home.user.model.UserDTO" >
+		INSERT INTO users(user_id, pwd, name, email) values(#{id}, #{password}, #{name}, #{email})
+	</insert>
+	
+	<update id="update" parameterType="home.user.model.UserDTO">
+		UPDATE users
+		SET pwd = #{password}, name = #{name}, email = #{email}
+		WHERE `user_id` = #{id} and pwd = #{password};
+	</update>
+	
+	<delete id="delete" parameterType="string">
+		DELETE FROM users
+		WHERE user_id = #{id};
+	</delete>
 </mapper>

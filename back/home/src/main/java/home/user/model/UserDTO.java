@@ -8,14 +8,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter @Setter
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
 public class UserDTO {
-	public String id;
-	public String password;
-	public String name;
-	public String email;
-	public LocalDateTime joinDate;
+    public String id;
+    public String password;
+    public String name;
+    public String email;
+    public LocalDateTime joinDate;
 }

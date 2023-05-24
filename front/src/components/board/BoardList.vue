@@ -143,8 +143,6 @@ export default {
         this.articles = data.articles;
         this.navigation = data.navigation;
         this.param = data.param;
-        console.log("listArticle created()");
-        console.log(this.param);
       },
       (error) => {
         console.log(error);

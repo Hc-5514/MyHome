@@ -1,12 +1,20 @@
 <template>
   <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view/>
+    <the-header-navbar></the-header-navbar>
+    <router-view></router-view>
   </div>
 </template>
+
+<script>
+import TheHeaderNavbar from "@/components/TheHeaderNavbar";
+
+export default {
+  name: "App",
+  components: {
+    TheHeaderNavbar,
+  },
+};
+</script>
 
 <style>
 #app {
@@ -17,16 +25,11 @@
   color: #2c3e50;
 }
 
-nav {
-  padding: 30px;
+a.router-link-exact-active {
+  color: #89bfef;
 }
 
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+a.router-link-exact-active:hover {
+  text-decoration: none;
 }
 </style>

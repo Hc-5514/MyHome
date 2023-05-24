@@ -93,7 +93,30 @@
         </div>
       </div>
     </div>
-    <div v-html="navigation.navigator" @click="movePage()"></div>
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center">
+        <li class="page-item">
+          <a class="page-link" @click="moveToPage(1)" aria-label="처음으로">
+            <span aria-hidden="true">&laquo;</span>
+          </a>
+        </li>
+        <a class="page-link" @click="moveToPage(1)">1</a>
+        <a class="page-link" @click="moveToPage(2)">2</a>
+        <a class="page-link" @click="moveToPage(3)">3</a>
+        <a class="page-link" @click="moveToPage(4)">4</a>
+        <a class="page-link" @click="moveToPage(5)">5</a>
+        <a class="page-link" @click="moveToPage(6)">6</a>
+        <a class="page-link" @click="moveToPage(7)">7</a>
+        <a class="page-link" @click="moveToPage(8)">8</a>
+        <a class="page-link" @click="moveToPage(9)">9</a>
+        <a class="page-link" @click="moveToPage(10)">10</a>
+        <li class="page-item">
+          <a class="page-link" @click="moveToPage(10)" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
   </div>
 </template>
 
@@ -120,7 +143,6 @@ export default {
         this.articles = data.articles;
         this.navigation = data.navigation;
         this.param = data.param;
-        console.log("listArticle created()");
       },
       (error) => {
         console.log(error);
@@ -159,19 +181,21 @@ export default {
           });
       }
     },
-    movePage() {
-      let pages = document.querySelectorAll(
-        ".pagination .page-item .page-link[move-pg]"
-      );
-      pages.forEach((page) => {
-        page.addEventListener("click", () => {
-          let nextPage = page.getAttribute("move-pg");
-          this.$router.push({
-            path: 'name: "boardlist"',
-            query: { page: nextPage },
-          });
+    moveToPage(pageNumber) {
+      apiInstance()
+        .get(`/home/board`, {
+          params: {
+            pg: pageNumber,
+            spp: this.param.spp,
+          },
+        })
+        .then(({ data }) => {
+          this.articles = data.articles;
+        })
+        .catch((err) => {
+          console.log(err);
         });
-      });
+      console.log("Moving to page", pageNumber);
     },
     updateButton(text) {
       if (text === "작성자") {

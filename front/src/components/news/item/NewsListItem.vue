@@ -3,7 +3,7 @@
     <td>{{ article_no }}</td>
     <img :src="img_url" alt="이미지가 없습니다." />
     <td>
-      <a :href="article_url">{{ title }}</a>
+      <a :href="article_url" target="_blank" class="custom-link">{{ title }}</a>
     </td>
     <td>{{ content }}</td>
     <td>{{ company }}</td>
@@ -26,4 +26,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.custom-link {
+  text-decoration: none;
+}
+</style>

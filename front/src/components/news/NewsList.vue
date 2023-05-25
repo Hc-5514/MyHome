@@ -31,7 +31,11 @@
     <div class="row mb-1">
       <div class="col">
         <div class="input-group mb-3">
-          <button type="button" class="btn btn-outline-secondary">
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            id="categoryButton"
+          >
             분류 선택
           </button>
           <button

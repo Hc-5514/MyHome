@@ -3,7 +3,10 @@
     <router-link :to="{ name: 'board' }" class="m-2 link">게시판 </router-link>
     <router-link :to="{ name: 'news' }" class="m-2 link">뉴스 </router-link>
     <router-link :to="{ name: 'login' }" class="m-2 link">로그인 </router-link>
-    <router-link :to="{ name: 'register' }" class="m-2 link">회원가입 </router-link>
+    <router-link :to="{ name: 'register' }" class="m-2 link"
+      >회원가입
+    </router-link>
+    <router-link :to="{ name: 'house' }" class="m-2 link">하우스 </router-link>
   </div>
 </template>
 

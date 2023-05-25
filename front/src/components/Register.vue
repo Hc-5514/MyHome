@@ -93,7 +93,9 @@ export default {
 				},
 				({data}) => {
 					if (data.message === "success") {
-						console.log('O')
+						this.$router.push({
+							name:"login"
+						})
 					} else {
 						console.log('X')
 					}

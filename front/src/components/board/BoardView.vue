@@ -28,13 +28,16 @@
           <div class="card-header">
             <!-- 공지사항, QnA 중 알아서 나오게끔 변경 해야 함 -->
             <h3>
-              [공지사항/Q&A] No.{{ article.category_no }} {{ article.title }}
+              {{ article.category }} No.{{ article.category_no }}
+              <span class="title-color">{{ article.title }}</span>
             </h3>
           </div>
           <div class="card-header">
-            <h6>
-              {{ article.user_id }} {{ article.regtime }} {{ article.hit }}
-            </h6>
+            <h4>
+              <i class="bi bi-person-circle"></i>
+              {{ article.user_id }} | {{ article.regtime }} | 조회수:
+              {{ article.hit }}
+            </h4>
           </div>
           <div class="card-body text-start">
             <div v-html="message"></div>
@@ -72,8 +75,12 @@ export default {
       this.$route.params.category,
       this.$route.params.category_no,
       ({ data }) => {
-        console.log(data);
         this.article = data;
+        if (this.article.category === "notice") {
+          this.article.category = "[공지사항] ";
+        } else {
+          this.article.category = "[Q&A] ";
+        }
       },
       (error) => {
         console.log(error);
@@ -108,4 +115,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.title-color {
+  color: red; /* Replace with the desired color */
+}
+</style>

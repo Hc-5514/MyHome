@@ -1,6 +1,6 @@
 <template>
   <tr>
-    <td>{{ category }}</td>
+    <td>{{ formattedCategory }}</td>
     <td>{{ category_no }}</td>
     <td class="text-left">
       <router-link
@@ -26,6 +26,16 @@
 
 export default {
   name: "BoardListItem",
+  computed: {
+    formattedCategory() {
+      if (this.category === "notice") {
+        return "공지사항";
+      } else if (this.category === "qna") {
+        return "Q&A";
+      }
+      return this.category;
+    },
+  },
   props: {
     category: String,
     category_no: Number,

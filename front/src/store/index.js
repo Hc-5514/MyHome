@@ -1,10 +1,8 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import createPersistedState from "vuex-persistedstate";
-import userStore from "./modules/userStore";
+import Vue from 'vue';
+import Vuex from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
+import userStore from './modules/userStore';
 import boardStore from '@/store/modules/boardStore';
-import itemStore from './modules/item/itemStore';
 
 Vue.use(Vuex);
 
@@ -15,7 +13,6 @@ export default new Vuex.Store({
   actions: {},
   modules: {
     boardStore,
-    itemStore,
     userStore,
   },
   plugins: [

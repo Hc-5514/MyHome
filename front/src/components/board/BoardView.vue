@@ -28,7 +28,7 @@
           <div class="card-header">
             <!-- 공지사항, QnA 중 알아서 나오게끔 변경 해야 함 -->
             <h3>
-              {{ article.category }} No.{{ article.category_no }}
+              {{ formattedCategory }} No.{{ article.category_no }}
               <span class="title-color">{{ article.title }}</span>
             </h3>
           </div>
@@ -69,6 +69,13 @@ export default {
         return this.article.content.split("\n").join("<br>");
       return "";
     },
+    formattedCategory() {
+      if (this.article.category === "notice") {
+        return "[공지사항] ";
+      } else {
+        return "[Q&A] ";
+      }
+    },
   },
   created() {
     getArticle(
@@ -76,11 +83,6 @@ export default {
       this.$route.params.category_no,
       ({ data }) => {
         this.article = data;
-        if (this.article.category === "notice") {
-          this.article.category = "[공지사항] ";
-        } else {
-          this.article.category = "[Q&A] ";
-        }
       },
       (error) => {
         console.log(error);

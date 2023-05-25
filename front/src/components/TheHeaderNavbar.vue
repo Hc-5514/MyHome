@@ -19,12 +19,13 @@
         <li class="nav-item" v-if="is_login == true " @click="try_logout">
           <a :to="{ name: 'login' }" class="nav-link">로그아웃 </a>
         </li>
+        <li class="nav-item" v-if="is_login == true ">
+          <router-link :to="{ name: 'userDetail' }" class="nav-link">회원정보 </router-link>
+        </li>
         <li class="nav-item">
           <router-link :to="{ name: 'register' }" class="nav-link">회원가입 </router-link>
         </li>
-      </ul>
-      <di>{{ access_token }}</di>
-      
+      </ul>      
     </div>
   </div>
 </nav>
@@ -32,8 +33,7 @@
 
 <script>
 import { logout } from "@/api/user";
-import { mapState } from "vuex";
-import { mapActions } from "vuex";
+import { mapState, mapActions } from "vuex";
 
 export default {
   name: "TheHeaderNavbar",

@@ -16,7 +16,7 @@
                                 </span>
                                 <input
                                     id="userid" type="text" class="form-control"
-                                    v-model="id" :disabled="disabled">
+                                    v-model="id" disabled>
                             </div>
 
                             <!-- 비밀번호 -->
@@ -49,31 +49,20 @@
                                 <span class="input-group-text"
                                     style="background-color: #929292;"> 
                                     <i class="bi bi-person-plus-fill text-white"></i>
-                                주소
+                                이메일
                                 </span> <input
-                                    id="address" type="text" class="form-control"
-                                    v-model="address" :disabled="disabled">
-                            </div>
-
-                            <div class="input-group mb-3">
-                                <span class="input-group-text" style="background-color: #929292;">
-                                    <i class="bi bi-person-plus-fill text-white"></i>
-                                휴대전화
-                                </span> <input
-                                    id="phoneNum" type="text" class="form-control"
-                                    v-model="phone" :disabled="disabled">
+                                    id="email" type="text" class="form-control"
+                                    v-model="email" :disabled="disabled">
                             </div>
 
 
                             <form style='display: inline'>
-                                <input type="submit" value="수정"
-                                    class="btn btn-primary text-center mt-2">
+                                <input value="수정" class="btn btn-primary text-center mt-2">
                             </form>
 
 
                             <form style='display: inline'>
-                                <input type="submit" value="회원탈퇴"
-                                    class="btn btn-danger text-center mt-2">
+                                <input value="회원탈퇴" class="btn btn-danger text-center mt-2">
                             </form>
                         </div>
                     </div>
@@ -84,6 +73,9 @@
 </template>
 
 <script>
+import { findById } from "@/api/user";
+// import { mapGetters } from "vuex";
+
 export default {
     name: "userDetail",
     data() {
@@ -91,11 +83,29 @@ export default {
             id: "",
             password: "",
             name:"",
-            address: "",
-            phone: "",
-            disabled: true,
+            email: "",
+            disabled: false,
         }
+    },
+    computed: {
+    //     ...mapGetters([
+    //   'get_user_id',
+    // ])
     }
+    ,
+    created() {
+        const user_id = this.$store.state.userStore.user_id
+        
+        findById(user_id, ({ data }) => {
+            const user = data.userInfo
+            this.id = user.id
+            this.password = user.password
+            this.name = user.name
+            this.email = user.email
+        }, () => {
+            console.log('X')
+        })
+    },
 }
 </script>
 

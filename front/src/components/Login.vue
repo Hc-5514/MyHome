@@ -63,7 +63,7 @@ export default {
 			},
 				({data}) => {
 					if (data.message === "success") {
-						this.login()
+						this.login(this.id)
 						sessionStorage.setItem("access-token", data["access-token"]);
 						sessionStorage.setItem("refresh-token", data['refresh-token']);
 						this.$router.push({

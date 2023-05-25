@@ -29,7 +29,7 @@
                                     
                                     <input
                                     id="userid" type="text" class="form-control"
-                                    v-model="password" :disabled="disabled">
+                                    v-model="password" disabled>
                             </div>
 
                             <!-- 이름 -->
@@ -41,7 +41,7 @@
                                 </span>
                                     <input
                                     id="username" type="text" class="form-control"
-                                    v-model="name" :disabled="disabled">
+                                    v-model="name" disabled>
                             </div>
 
                             <!-- 주소 -->
@@ -52,18 +52,18 @@
                                 이메일
                                 </span> <input
                                     id="email" type="text" class="form-control"
-                                    v-model="email" :disabled="disabled">
+                                    v-model="email" disabled>
                             </div>
 
 
-                            <form style='display: inline'>
+                            <!-- <form style='display: inline'>
                                 <input value="수정" class="btn btn-primary text-center mt-2">
                             </form>
 
 
                             <form style='display: inline'>
                                 <input value="회원탈퇴" class="btn btn-danger text-center mt-2">
-                            </form>
+                            </form> -->
                         </div>
                     </div>
                 </div>

@@ -11,11 +11,17 @@
             category_no: category_no,
           },
         }"
+        class="custom-link"
       >
         {{ title }}
       </router-link>
     </td>
-    <td>{{ user_id }}</td>
+    <td>
+      <span v-if="formattedCategory === '공지사항'">
+        <i class="bi bi-person-circle"></i>
+      </span>
+      {{ user_id }}
+    </td>
     <td>{{ regtime }}</td>
     <td>{{ hit }}</td>
   </tr>
@@ -52,4 +58,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+.custom-link {
+  text-decoration: none;
+}
+</style>

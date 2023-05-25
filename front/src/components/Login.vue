@@ -43,6 +43,7 @@
 <script>
 // import { login, findById, tokenRegeneration, logout } from "@/api/member";
 import { login } from "@/api/user";
+import { mapActions } from "vuex";
 
 export default {
     name: "loginCard",
@@ -53,6 +54,7 @@ export default {
         }
 	},
 	methods: {
+		...mapActions("userStore", ["login"]),
 		async try_login() {
 			console.log("try login")
 			login({
@@ -61,8 +63,12 @@ export default {
 			},
 				({data}) => {
 					if (data.message === "success") {
+						this.login(this.id)
 						sessionStorage.setItem("access-token", data["access-token"]);
 						sessionStorage.setItem("refresh-token", data['refresh-token']);
+						this.$router.push({
+							name:"boardlist"
+						})
 					}
 				},
 				({data}) => {

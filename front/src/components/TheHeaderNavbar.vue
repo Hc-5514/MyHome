@@ -13,6 +13,9 @@
         <li class="nav-item">
           <router-link :to="{ name: 'news' }" class="nav-link">뉴스 </router-link>
         </li>
+        <li class="nav-item">
+          <router-link :to="{ name: 'house' }" class="m-2 link">하우스 </router-link>
+        </li>
         <li class="nav-item" v-if="is_login == false ">
           <router-link :to="{ name: 'login' }" class="nav-link">로그인 </router-link>
         </li>

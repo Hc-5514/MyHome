@@ -2,7 +2,7 @@ package home.apt.controller;
 
 import home.apt.model.AptDto;
 import home.apt.model.service.AptService;
-import home.dong.model.DongDto;
+import home.house.model.SidoGugunDongDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +26,7 @@ public class AptController {
 
     @PostMapping("/search")
     @ResponseBody
-    public ResponseEntity<?> aptSearch(@RequestBody DongDto dongDto, Model model) throws Exception {
+    public ResponseEntity<?> aptSearch(@RequestBody SidoGugunDongDto dongDto, Model model) throws Exception {
         try {
             return new ResponseEntity<List<AptDto>>(service.getAptList(dongDto.getDongName()), HttpStatus.OK);
         } catch (Exception e) {

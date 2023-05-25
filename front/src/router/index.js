@@ -1,9 +1,21 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import AppHouse from '@/views/AppHouse';
 
 Vue.use(VueRouter);
 
 const routes = [
+  {
+    path: '/',
+    name: 'main',
+    component: AppHouse,
+    redirect: '/house',
+  },
+  {
+    path: '/house',
+    name: 'house',
+    component: AppHouse,
+  },
   {
     path: '/board',
     name: 'board',
@@ -56,7 +68,7 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../components/Register.vue')
+    component: () => import(/* webpackChunkName: "about" */ '../components/Register.vue'),
   },
   {
     path: '/login',
@@ -64,8 +76,8 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../components/Login.vue')
-  }
+    component: () => import(/* webpackChunkName: "about" */ '../components/Login.vue'),
+  },
 ];
 
 const router = new VueRouter({
